@@ -63,6 +63,10 @@ func NewSmartCast(ip, id, name string) *SmartCast {
 	}
 }
 
+func (s *SmartCast) SetAuthToken(token string) {
+	s.AuthToken = token
+}
+
 func (s *SmartCast) apiCall(method, endpoint string, data io.Reader) (*APIResp, error) {
 	uri := fmt.Sprintf("https://%s:9000/%s", s.IP, endpoint)
 
