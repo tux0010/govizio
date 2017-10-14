@@ -8,6 +8,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -56,10 +57,13 @@ func NewSmartCast(ip, id, name string) *SmartCast {
 	}
 
 	return &SmartCast{
-		IP:     ip,
-		ID:     id,
-		Name:   name,
-		client: &http.Client{Transport: tr},
+		IP:   ip,
+		ID:   id,
+		Name: name,
+		client: &http.Client{
+			Transport: tr,
+			Timeout:   time.Second * 5,
+		},
 	}
 }
 
